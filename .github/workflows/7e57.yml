@@ -1,4 +1,4 @@
-name: Account and Key Generator
+name: Account and Key Generator (fixed)
 
 on:
  # schedule: #if need schedule 
