@@ -568,7 +568,7 @@ def main(disable_exit=False):
                     output_filename = 'ESET KEYS.txt'
                     product_type = 'ESET HOME' if args['key'] else 'SMALL BUSINESS'
                     EK_obj = EK(email_obj, DRIVER, product_type)
-                    EK_obj.sendRequestForKey(self.product_type)
+                    EK_obj.sendRequestForKey()
                     l_name, l_key, l_out_date = EK_obj.getLD()
                     output_line = '\n'.join([
                         '',
@@ -752,5 +752,6 @@ if __name__ == '__main__':
                     main(disable_exit=True)
             except KeyboardInterrupt:
                 exit_program(0, DRIVER)
+
 
 
