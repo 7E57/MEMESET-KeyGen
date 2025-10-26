@@ -566,8 +566,9 @@ def main(disable_exit=False):
                 output_filename = 'ESET ACCOUNTS.txt'
                 if args['key'] or args['small_business_key'] or args['vpn_codes']:
                     output_filename = 'ESET KEYS.txt'
-                    EK_obj = EK(email_obj, DRIVER, 'ESET HOME' if args['key'] else 'SMALL BUSINESS')
-                    EK_obj.sendRequestForKey()
+                    product_type = 'ESET HOME' if args['key'] else 'SMALL BUSINESS' # <-- Added for clarity and use below
+                    EK_obj = EK(email_obj, DRIVER, product_type) # <-- Used new variable
+                    EK_obj.sendRequestForKey(product_type)      # <-- FIX: Passed product_type to the method
                     l_name, l_key, l_out_date = EK_obj.getLD()
                     output_line = '\n'.join([
                         '',
@@ -601,6 +602,7 @@ def main(disable_exit=False):
                                 '-------------------------------------------------',
                                 ''
                             ])
+                            
 
             # ESET ProtectHub
             elif args['protecthub_account'] or args['advanced_key']:
@@ -751,3 +753,4 @@ if __name__ == '__main__':
                     main(disable_exit=True)
             except KeyboardInterrupt:
                 exit_program(0, DRIVER)
+
